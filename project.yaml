@@ -1,12 +1,18 @@
-version: '3.0'
+version: "3.0"
 
 expectations:
   population_size: 1000
 
 actions:
-
   generate_study_population:
     run: cohortextractor:latest generate_cohort --study-definition study_definition
     outputs:
       highly_sensitive:
         cohort: output/input.csv
+
+  flow_chart_all:
+    run: r:latest -e 'rmarkdown::render("analysis/example.Rmd", output_dir="/workspace/output")'
+    needs: [generate_study_population]
+    outputs:
+      moderately_sensitive:
+        html: output/example.html

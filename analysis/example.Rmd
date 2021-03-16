@@ -1,0 +1,19 @@
+---
+title: "Example"
+author: "Anne Example"
+date: "`r paste(Sys.Date())`"
+output: html_document
+---
+
+## Hello, world
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+data=data.frame(value=rnorm(100))
+
+
+p <- ggplot(data, aes(x=value)) + 
+  geom_histogram()
+```
